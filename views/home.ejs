@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API de Notícias</title>
+
+    <!-- Link do Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJxnMzzgsAF6u5R8XvEwl1gJ9oFc6pA8f/59J3F6h5n7c5f6c7mQqk6G7zM6" crossorigin="anonymous">
+    
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        h1, h2 {
+            color: #007bff;
+        }
+
+        pre {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .endpoint-desc {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .json-example {
+            font-family: monospace;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <header class="text-center mb-5">
+            <h1>API de Notícias</h1>
+            <p>Documentação da API para gerenciar notícias em um banco MongoDB Atlas.</p>
+        </header>
+
+        <section>
+            <h2>Endpoints da API</h2>
+            
+            <!-- Endpoint 1: Buscar todas as notícias -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="endpoint-desc">1. Buscar todas as notícias</div>
+                    <p><strong>URL:</strong> <code>/noticias</code></p>
+                    <p><strong>Método:</strong> GET</p>
+                    <p>Retorna todas as notícias armazenadas no banco de dados.</p>
+                </div>
+            </div>
+
+            <!-- Endpoint 2: Buscar uma notícia por ID -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="endpoint-desc">2. Buscar uma notícia por ID</div>
+                    <p><strong>URL:</strong> <code>/noticias/id/:id</code></p>
+                    <p><strong>Método:</strong> GET</p>
+                    <p>Retorna os dados de uma notícia específica pelo seu ID.</p>
+                </div>
+            </div>
+
+            <!-- Endpoint 3: Buscar notícias por tipo -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="endpoint-desc">3. Buscar notícias por tipo</div>
+                    <p><strong>URL:</strong> <code>/noticias/tiponoticia/:tipo</code></p>
+                    <p><strong>Método:</strong> GET</p>
+                    <p>Retorna as notícias filtradas pelo tipo (ex: esportes, política, etc.).</p>
+                </div>
+            </div>
+
+            <!-- Endpoint 4: Inserir uma nova notícia -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="endpoint-desc">4. Inserir uma nova notícia</div>
+                    <p><strong>URL:</strong> <code>/postnoticias</code></p>
+                    <p><strong>Método:</strong> POST</p>
+                    <p>Adiciona uma nova notícia ao banco de dados. Envie os dados no formato JSON.</p>
+
+                    <p><strong>Exemplo de corpo da requisição (JSON):</strong></p>
+                    <pre class="json-example">
+{
+    "titulo": "Título da Notícia",
+    "descricao": "Descrição detalhada da notícia.",
+    "tipo": "Categoria da notícia",
+    "data": "2025-11-25T14:00:00Z"
+}
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 5: Atualizar uma notícia -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="endpoint-desc">5. Atualizar uma notícia existente</div>
+                    <p><strong>URL:</strong> <code>/putnoticias</code></p>
+                    <p><strong>Método:</strong> PUT</p>
+                    <p>Atualiza os dados de uma notícia existente. Envie os dados no formato JSON.</p>
+
+                    <p><strong>Exemplo de corpo da requisição (JSON):</strong></p>
+                    <pre class="json-example">
+{
+    "id": "12345",
+    "titulo": "Novo título atualizado",
+    "descricao": "Descrição atualizada da notícia.",
+    "tipo": "Categoria atualizada",
+    "data": "2025-11-26T14:00:00Z"
+}
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 6: Apagar uma notícia -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="endpoint-desc">6. Apagar uma notícia</div>
+                    <p><strong>URL:</strong> <code>/delnoticias</code></p>
+                    <p><strong>Método:</strong> DELETE</p>
+                    <p>Remove uma notícia do banco de dados. Envie os dados no formato JSON.</p>
+
+                    <p><strong>Exemplo de corpo da requisição (JSON):</strong></p>
+                    <pre class="json-example">
+{
+    "id": "12345"
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-5 py-3">
+            <p>API de Notícias - Desenvolvido por [Seu Nome ou Empresa]</p>
+        </footer>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybFf7kP0vYbVxgCff6gW+zZbD2vVuD4g5n7FdBoDq2p4v47+F" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-cu8tiJlA97Nm57Liw73fiZj8A74iHhZBxIhHlBLlVYRe+MhM7pkS1Z1usCM3PbcR" crossorigin="anonymous"></script>
+</body>
+
+</html>
