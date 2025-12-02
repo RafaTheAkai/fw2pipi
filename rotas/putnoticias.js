@@ -1,18 +1,19 @@
-module.exports = (app)=>{
-    app.put( "/noticias", async (req,res) =>{
-        try{
-            const id = req.body.objectId
-            
-        await app.dbClient.connect();
-        const resulatado = await app.dbClient.db('portalnoticas')
-            .collection('noticias')
-            .deleteOne({
-                objectId: objectId, })
+const { ObjectId } = require("mongodb")
+
+module.exports = (app) => {
+    app.put('/putnoticias', async (req, res) => {
+        try {
+            const id = req.body._id
+            const titulonoticia = req.body.titulonoticia
+            const conteudonoticia = req.body.conteudonoticia
+            await app.dbClient.connect();
+            const resultado = await app.dbClient.db('portalnoticias')
+                .collection('noticias')
+                .updateOne({ _id: ObjectId.createFromHexString(id) }, { $set: { titulonoticia: titulonoticia, conteudonoticia: conteudonoticia } })
                 
-        res.json(users);
-        res.status(200).send("Noticas gravadas com sucesso" + resulatado)
-        }catch(error){
-            res.status(400).send("erro ao gravar a noticia" + error)
+            res.status(200).send('Dados atualizados')
+        } catch (error) {
+            res.status(400).send('Erro ao Gravar: ' + error)
         }
     })
-    }
+}
